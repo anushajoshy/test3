@@ -1,0 +1,11 @@
+      yum search java
+      yum search java | grep openjdk
+      yum install java-1.7.0-openjdk-devel.x86_64 java-1.8.0-openjdk.x86_64
+      echo $JAVA_HOME
+      yum search jenkins
+      wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+      rpm --import http://pkg.jenkins-ci.org/redhat-stable/jenkins-ci.org.key
+      yum install jenkins
+      service jenkins start
+      chkconfig jenkins on
+
