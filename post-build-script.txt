@@ -1,0 +1,9 @@
+jar -cvf ROOT.war *
+scp -i /var/lib/jenkins/.ssh/id_rsa ROOT.war ubuntu@192.168.0.1:/home/ubuntu/
+ssh -t ubuntu@192.168.0.1 "sudo rm -rf  /usr/local/chef-repo/cookbooks/tomcat-web-app-deploy/files/default/ROOT.war"
+ssh -t ubuntu@192.168.0.1 "sudo mv /home/ubuntu/ROOT.war /usr/local/chef-repo/cookbooks/tomcat-web-app-deploy/files/default"
+ssh -t ubuntu@192.168.0.1 "cd /usr/local/chef-repo/.chef && sudo knife cookbook upload tomcat-web-app-deploy"
+###
+###This is the post build commands used to update the artifacts in the Chef Cook Book and then auto deploy the updated artifact to web server###
+### replace the 192.168.0.1 ip with your amazon internal ip of the web server
+### This script is working successfully
